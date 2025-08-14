@@ -1,0 +1,54 @@
+# OS-specific files
+.DS_Store
+Thumbs.db
+._*
+
+# Python virtual environment
+rahul/
+
+# Node.js dependencies (if using npm/yarn for assets)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build and cache directories
+dist/
+build/
+.cache/
+tmp/
+temp/
+
+# Log files
+*.log
+logs/
+*.out
+*.pid
+
+# IDE / editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Backup / temp files
+*.swp
+*.bak
+*.tmp
+
+# Deployment-related
+*.zip
+*.tar.gz
+
+# Images cache (if any optimizer used)
+assets/img/cache/
+
+# API keys or credentials (make sure they're in .env)
+apikeys.json

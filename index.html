@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Rahul Kumar - AI Portfolio</title>
+  <meta content="Rahul Kumar's personal portfolio showcasing projects in AI, Machine Learning, and Web Development, now with Gemini-powered interactive features." name="description">
+  <meta content="Rahul Kumar, AI, Machine Learning, Portfolio, Gemini API" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  
+  <!-- Font Awesome for Python icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- Add in <head> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- Font Awesome for GitHub icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href='https://d33wubrfki0l68.cloudfront.net/bundles/facbe44cd84b1eae582e916da34b486a74212c68.css' rel='stylesheet'/>
+  
+  <!-- Template Main CSS File -->
+  <link href='https://d33wubrfki0l68.cloudfront.net/css/6093f7245fc5a57ec25865f10b79f9d9f96815c3/assets/css/style.css' rel='stylesheet'/>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F3K94TEL7M"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-F3K94TEL7M');
+  </script>
+
+  <!-- Custom CSS for New Sections and AI Features -->
+  <style>
+    /* MODIFICATION: Updated project card styles for the new layout */
+    .project-card {
+      background: #fff;
+      padding: 30px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 0 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease-in-out;
+      text-align: left;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .project-card .project-image {
+        border-radius: 8px;
+        border: 1px solid #eee;
+        padding: 5px;
+    }
+
+    .project-card .project-content h4 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    .project-card .project-content p {
+      margin-bottom: 20px;
+      color: #555;
+    }
+    
+    /* On smaller screens (mobile), add space between the image and the text content */
+    @media (max-width: 991.98px) {
+      .project-card .project-content {
+        margin-top: 25px;
+      }
+    }
+    /* END MODIFICATION */
+    
+    /* Container for the buttons */
+    .project-buttons, .resume-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    /* Reusing and adapting the existing button style for new buttons */
+    .btn-custom {
+      background: #18d26e;
+      border: 0;
+      padding: 10px 24px;
+      color: #fff;
+      transition: 0.4s;
+      border-radius: 4px;
+      text-decoration: none;
+      display: inline-block;
+      cursor: pointer;
+    }
+    
+    .btn-custom:disabled {
+        background: #a5d6a7;
+        cursor: not-allowed;
+    }
+
+    .btn-custom:hover:not(:disabled) {
+      background: #15bb62;
+      color: #fff;
+    }
+
+    .btn-github {
+      background: #333;
+    }
+
+    .btn-github:hover:not(:disabled) {
+      background: #555;
+    }
+
+    /* AI Modal for loading and error messages */
+    .ai-modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.6);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ai-modal-content {
+        background-color: #fefefe;
+        padding: 30px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    .loader {
+      border: 5px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 5px solid #18d26e;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header">
+    <div class="container">
+
+      <h1><a href='/'>Rahul Kumar</a></h1>
+      <h2 class="d-lg-none d-xl-none">Using mobile? Best viewed in large screen 🙂 </h2>
+      <div class="Iam d-none d-lg-block">
+        <b>
+          <div class="innerIam">
+            Python Developer<br />
+            Machine Learning Engineer<br /> 
+            Data Analyst<br />
+            AI Enthusiast<br />
+            Content Creator
+            </div>
+        </b>
+      </div>
+
+      <nav id="navbar" class="navbar"> 
+        <ul>
+          <li><a class="nav-link active" href="#header">Home</a></li>
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#resume">Resume</a></li>
+          <li><a class="nav-link" href="#projects">Projects</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <i class="bi bi-arrow-left mobile-nav-toggle"> Explore</i>
+      </nav>
+      <!-- .navbar -->
+
+      <div class="social-links">
+        <a href="https://x.com/Singhrahul2_0" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="https://www.instagram.com/singhrahul2.0/" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/rahul-kumar-8ab740268/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <a href="https://www.youtube.com/channel/UCH58zg50Da_kO_6241YO2QQ" class="youtube"><i class="bi bi-youtube"></i></a>
+        <a href="https://t.me/InsomniacTech" class="Github"><i class="bi bi-github"></i></a>
+      </div>
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= About Section ======= -->
+  <section id="about" class="about">
+
+    <!-- ======= About Me ======= -->
+    <div class="about-me container">
+
+      <div class="section-title">
+        <h2>About</h2>
+        <p>Learn more about me</p>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-4" data-aos="fade-right">
+          <img src="rahul.png" class="img-fluid rounded-circle" alt="">
+        </div>
+        <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
+          <h3>AI Engineer</h3>
+          <p class="font-italic">
+            If you think about it, the entire world is wrapped in an <strong>if-else</strong> and a <strong>for-loop</strong> logic<br>
+            - Rahul Kumar
+          </p>
+          <div class="row">
+            <div class="col-lg-6">
+              <ul>
+                <!-- <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>3 June 1997</span></li> -->
+                <li><i class="bi bi-chevron-right"></i> <strong>DOB:</strong> <span>25/11/2004</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.rahulkumar.com</span></li>
+                <!-- <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+91 98407 23698</span></li> -->
+                <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>Madurai, India</span></li>
+              </ul>
+            </div>
+            <div class="col-lg-6">
+              <ul>
+                <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>B.tech(cse)</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span>rahulkumarpatelbr@gmail.com</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Career:</strong> <span>Self-Employed</span></li>
+              </ul>
+            </div>
+          </div>
+          <p>
+            Greetings Everyone!<br>
+            Thanks for viewing my portfolio and now if you’ve landed in this page then it simply means you wanted to know about me and I am glad about it. Starting off with my childhood, academics was never my point of interest but anything that wasn’t a part of my curriculum has been something I’ve always been curious about. I’ve been brought up in a way that me and technology go hand in hand. As years passed by, technology updated and evolved and so did I. Finally on my final years of schooling i figured that deals with the virtual world is my cup of tea as turns out all my hobbies, interests and passion turned out to be within a 24 inch screen or a 6 inch screen.
+          </p>
+
+          <p>
+            I am a person who believes that book knowledge and the marks that toppers gain is nothing if you can’t even implement it in real life and see or make a change happen! That’s where I jump in, as a practical learner i love to learn new things, explore them and then implement them to see something happen and when it does turn out successful, that gives me happiness that not any marksheet could get me.
+          </p>
+
+          <p>
+            My knowledge base has always been ever growing and never stops,learning programming languages and want to start youtube as my upcoming carrer.
+          </p>
+
+          <p>
+            Thanks for stopping by!<br>
+            Feel free to contact or leave any feed back behind :)
+          </p>
+        </div>
+      </div>
+
+    </div><!-- End About Me -->
+
+    <!-- ======= Counts ======= -->
+    <div class="counts container">
+
+      <div class="row">
+
+        <div class="col-lg-3 col-md-6">
+          <div class="count-box">
+            <i class="bi bi-emoji-smile"></i>
+            <span data-purecounter-start="0" data-purecounter-end="300" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Hours of coding</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+          <div class="count-box">
+            <i class="bi bi-journal-richtext"></i>
+            <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Open Source Projects</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+          <div class="count-box">
+            <i class="bi bi-kanban"></i>
+            <span data-purecounter-start="0" data-purecounter-end="35" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Github Contributions</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+          <div class="count-box">
+            <i class="bi bi-building"></i>
+            <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+            <p>Industrial Projects</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- End Counts -->
+
+    <!-- ======= Skills  ======= -->
+    <div class="skills container">
+
+      <div class="section-title">
+        <h2>Skills</h2>
+      </div>
+
+      <div class="row skills-content">
+
+        <div class="col-lg-6">
+
+          <div class="progress">
+            <span class="skill">Python Development <i class="val">80%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress">
+            <span class="skill">Data Structure With Python <i class="val">50%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress">
+            <span class="skill">Machine Learning <i class="val">65%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress">
+            <span class="skill">Communication <i class="val">90%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-6">
+
+          <div class="progress">
+            <span class="skill">Video Editing <i class="val">70%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+
+          <div class="progress">
+            <span class="skill">Social Media <i class="val">80%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+
+          <div class="progress">
+            <span class="skill">Git <i class="val">50%</i></span>
+            <div class="progress-bar-wrap">
+              <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- End Skills -->
+
+    <!-- ======= Interests ======= -->
+    <div class="interests container">
+
+      <div class="section-title">
+        <p>Interests</p>
+        <h2>My magic resides here</h2>
+      </div>
+
+      <div class="row">
+        <!-- Python -->
+        <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+          <div class="icon-box">
+            <i class="fab fa-python" style="color: #3776AB; font-size: 2rem;"></i>
+            <h3>Python</h3>
+          </div>
+        </div>
+
+        <!-- NumPy -->
+        <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+          <div class="icon-box">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/NumPy_logo.svg" width="32" height="32" alt="NumPy">
+            <h3>NumPy</h3>
+          </div>
+        </div>
+
+        <!-- Pandas -->
+        <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+          <div class="icon-box">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Pandas_logo.svg" width="32" height="32" alt="Pandas">
+            <h3>Pandas</h3>
+          </div>
+        </div>
+
+        <!-- Flask -->
+        <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+          <div class="icon-box">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Flask_logo.svg" width="32" height="32" alt="Flask">
+            <h3>Flask</h3>
+          </div>
+        </div>
+
+        <!-- FastAPI -->
+        <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+          <div class="icon-box">
+            <img src="https://fastapi.tiangolo.com/img/logo-margin/logo-teal.png" width="32" height="32" alt="FastAPI">
+            <h3>FastAPI</h3>
+          </div>
+        </div>
+
+        <!-- Scikit-learn -->
+        <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+          <div class="icon-box">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" width="32" height="32" alt="Scikit-learn">
+            <h3>Scikit-learn</h3>
+          </div>
+        </div>
+      </div>
+        <div class="col-lg-3 col-md-4 mt-4 mt-md-0"> 
+          <div class="icon-box"> 
+            <i class="fab fa-python" style="color: #3776AB; font-size: 2rem;"></i> 
+            <h3>Python Development <br> <small>(Advanced)</small></h3> 
+          </div> 
+        </div>
+
+        <div class="row">
+          <!-- VS Code -->
+          <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+            <div class="icon-box">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/Visual_Studio_Code_1.35_icon.svg" width="32" height="32" alt="VS Code">
+              <h3>VS Code</h3>
+            </div>
+          </div>
+
+          <!-- Jupyter Notebook -->
+          <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+            <div class="icon-box">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Jupyter_logo.svg" width="32" height="32" alt="Jupyter Notebook">
+              <h3>Jupyter Notebook</h3>
+            </div>
+          </div>
+
+          <!-- Git -->
+          <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+            <div class="icon-box">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Git_icon.svg" width="32" height="32" alt="Git">
+              <h3>Git</h3>
+            </div>
+          </div>
+
+          <!-- GitHub -->
+          <div class="col-lg-3 col-md-4 mt-4 mt-md-0">
+            <div class="icon-box">
+              <i class="fab fa-github" style="color: #000; font-size: 2rem;"></i>
+              <h3>GitHub</h3>
+            </div>
+          </div>
+        </div>
+                
+
+        <div class="col-lg-3 col-md-4 mt-4">
+          <div class="icon-box">
+            <i class="ri-youtube-fill" style="color: #ff255b;"></i>
+            <h3>Content Creation</h3>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 mt-4">
+          <div class="icon-box">
+            <i class="ri-computer-fill" style="color: #6ca700;"></i>
+            <h3>Computer Technician</h3>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- End Interests -->
+    <ul class="circles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </section><!-- End About Section -->
+
+  <!-- ======= Resume Section ======= -->
+  <section id="resume" class="resume">
+    <div class="container">
+      <div class="section-title">
+        <h2>Resume</h2>
+        <p>Check My Resume</p>
+      </div>
+
+      <div class="row">
+        <!-- Left Column -->
+        <div class="col-lg-6">
+          <h3 class="resume-title">Summary</h3>
+          <div class="resume-item pb-0">
+            <h4>Rahul Kumar</h4>
+            <p><em>Excel in delivering innovative and out-of-the-box content in my areas of strength. Competitive in bringing uniqueness to every project I take on.</em></p>
+            <ul>
+              <li>Madurai, Tamil Nadu, India</li>
+              <li>(+91) 7033810323</li>
+              <li>rahulkumarpatelbr@gmail.com</li>
+            </ul>
+          </div>
+
+          <h3 class="resume-title">Education</h3>
+          <div class="resume-item">
+            <h4>B.L Indo School</h4>
+            <h5>2017 - 2020</h5>
+            <p>Scored 84.2% in Class 10 and 76.6% in Class 12 Board Exams.</p>
+          </div>
+
+          <div class="resume-item">
+            <h4>Sachchidanand Sinha College</h4>
+            <h5>2020 - 2022</h5>
+            <p>Higher Secondary Education (PCM) with 76.6%.</p>
+          </div>
+
+          <div class="resume-item">
+            <h4>Kalasalingam University</h4>
+            <h5>2022 - 2026</h5>
+            <p><em>B.Tech in CSE (AI & ML)</em></p>
+            <p>CGPA: 8.22</p>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-lg-6">
+          <h3 class="resume-title">Professional Experience</h3>
+          
+          <div class="resume-item">
+            <h4>AI Research Intern</h4>
+            <h5>May 2025 – June 2025</h5>
+            <p><em>Alignerr.ai / Remote</em></p>
+            <ul>
+              <li>Evaluated AI-generated Python code from two large language models (LLMs) for prompt relevance, code accuracy, and execution performance.</li>
+              <li>Identified logic errors, inefficiencies, and hallucinations through critical analysis.</li>
+              <li>Cleared a Python skill assessment during onboarding, validating technical proficiency.</li>
+            </ul>
+            <p><strong>Skills:</strong> Python, Prompt Engineering, LLM Evaluation, AI Model Comparison, Critical Analysis</p>
+          </div>
+
+          <div class="resume-item">
+            <h4>Oracle Cloud Infrastructure Data Science Professional</h4>
+            <h5>July 2025</h5>
+            <p><em>Oracle / Self-study via Oracle MyLearn</em></p>
+            <ul>
+              <li>Completed Oracle’s official “OCI Data Science Professional” digital training through the Race to Certification 2025 campaign.</li>
+              <li>Learned ML lifecycle methods using Oracle Cloud services (1Z0-1110-25 prep, hands-on labs).</li>
+              <li>Practiced sample-certification questions and demonstrated readiness for the certification exam.</li>
+            </ul>
+            <p><strong>Skills:</strong> Oracle OCI, ML model deployment, cloud data pipelines, certification exam prep</p>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Resume Buttons -->
+      <div class="row mt-4">
+        <div class="col text-center">
+          <a href="assets/resume1.pdf" class="btn-custom" download>Download Resume (Version 1)</a>
+          <a href="assets/resume2.pdf" class="btn-custom" download>Download Resume (Version 2)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Resume Section -->
+
+
+
+
+
+  <!-- ======= Projects Section ======= -->
+  <section id="projects" class="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>Projects</h2>
+        <p>My Work</p>
+      </div>
+      
+      <!-- MODIFICATION: Changed project card structure to a 2-column layout -->
+      <div class="project-card" data-aos="fade-up">
+        <div class="row align-items-center">
+          <div class="col-lg-5">
+            <img src="assets/projects/ai-resume-coach/overview.png" alt="AI Resume Interview Coach Screenshot" class="img-fluid project-image">
+          </div>
+          <div class="col-lg-7 project-content">
+            <h4>AI Resume Interview Coach</h4>
+            <p>An intelligent system web app helps users optimize their resume against job descriptions, practice with AI-generated questions, and run a full mock interview simulation.</p>
+            <div class="project-buttons">
+              <a href="https://rahul12.streamlit.app/" class="btn-custom" target="_blank">Live Demo</a>
+              <a href="https://github.com/Singhrahul2511/AI-Resume-Interview-Coach" class="btn-custom btn-github" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card" data-aos="fade-up">
+        <div class="row align-items-center">
+          <div class="col-lg-5">
+            <img src="assets/projects/ipl-dashboard/ipl.png" alt="IPL Analytics Dashboard Screenshot" class="img-fluid project-image">
+          </div>
+          <div class="col-lg-7 project-content">
+            <h4>IPL Analytics Dashboard</h4>
+            <p>A comprehensive data analytics dashboard built to visualize and explore historical IPL data. This tool offers insights into team performance, player statistics, and match outcomes, enabling users to analyze trends from over a decade of cricket matches.</p>
+            <div class="project-buttons">
+              <a href="https://ipl-dashboard-rahul.onrender.com/" class="btn-custom" target="_blank">Live Demo</a>
+              <a href="https://github.com/Singhrahul2511/IPL-Analytics-Dashboard-" class="btn-custom btn-github" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card" data-aos="fade-up">
+        <div class="row align-items-center">
+          <div class="col-lg-5">
+            <img src="assets/projects/startup.png" alt="Indian Startup Analysis Screenshot" class="img-fluid project-image">
+          </div>
+          <div class="col-lg-7 project-content">
+            <h4>Indian Startup Analysis</h4>
+            <p>An in-depth analysis of the Indian startup ecosystem, examining funding trends, key investors, and burgeoning sectors. This project provides a data-driven overview of the landscape to help stakeholders understand investment patterns.</p>
+            <div class="project-buttons">
+              <a href="https://indian-startup-analysis-57rq.onrender.com/" class="btn-custom" target="_blank">Live Demo</a>
+              <a href="https://github.com/Singhrahul2511/Indian_Startup_Analysis" class="btn-custom btn-github" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card" data-aos="fade-up">
+        <div class="row align-items-center">
+          <div class="col-lg-5">
+            <img src="assets/projects/call.png" alt="AI-Powered Text & Call Insights Platform Screenshot" class="img-fluid project-image">
+          </div>
+          <div class="col-lg-7 project-content">
+            <h4>AI-Powered Text & Call Insights Platform</h4>
+            <p>This platform utilizes AI to analyze text and call data, extracting valuable insights for businesses. It identifies customer sentiment and key topics to help improve service quality and operational efficiency.</p>
+            <div class="project-buttons">
+              <a href="https://rahul-insights-platform.streamlit.app/Text_Analysis" class="btn-custom" target="_blank">Live Demo</a>
+              <a href="https://github.com/Singhrahul2511/AI-Powered-Text-Call-Insights-Platform" class="btn-custom btn-github" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card" data-aos="fade-up">
+        <div class="row align-items-center">
+          <div class="col-lg-5">
+            <img src="assets/projects/mind.png" alt="Full-Stack Mind Map Generator Screenshot" class="img-fluid project-image">
+          </div>
+          <div class="col-lg-7 project-content">
+            <h4>Full-Stack Mind Map Generator</h4>
+            <p>A web application that automatically generates mind maps from user-provided text or topics. This tool helps users visualize complex information, organize ideas, and enhance their creative and strategic thinking processes.</p>
+            <div class="project-buttons">
+              <a href="https://full-stack-mind-map-generator.onrender.com/" class="btn-custom" target="_blank">Live Demo</a>
+              <a href="https://github.com/Singhrahul2511/Full-Stack-Mind-Map-Generator" class="btn-custom btn-github" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END MODIFICATION -->
+
+    </div>
+  </section><!-- End Projects Section -->
+  
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Contact Me</p>
+      </div>
+      <div class="row mt-2">
+        <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
+          <div class="info-box">
+            <i class="bx bx-share-alt"></i>
+            <h3>Social Profiles</h3>
+            <div class="social-links">
+                <a href="https://x.com/Singhrahul2_0" class="twitter"><i class="bi bi-twitter"></i></a>
+                <a href="https://www.instagram.com/singhrahul2.0/" class="instagram"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.linkedin.com/in/rahul-kumar-8ab740268/" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                <a href="https://www.youtube.com/channel/UCH58zg50Da_kO_6241YO2QQ" class="youtube"><i class="bi bi-youtube"></i></a>
+                <a href="https://github.com/Singhrahul2511" class="Github"><i class="bi bi-github"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
+          <div class="info-box">
+            <i class="bx bx-envelope"></i>
+            <h3>Email Me</h3>
+            <p>rahulkumarpatelbr@gmail.com</p>
+          </div>
+        </div>
+      </div>
+      <form class='php-email-form mt-4' method='POST' name='contact'><input type='hidden' name='form-name' value='contact' />
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+          </div>
+          <div class="col-md-6 form-group mt-3 mt-md-0">
+            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+          </div>
+        </div>
+        <div class="form-group mt-3">
+          <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+        </div>
+        <div class="form-group mt-3">
+          <textarea class="form-control" name="message" id="contact-message" rows="5" placeholder="Message" required></textarea>
+        </div>
+        <div class="mt-4 text-center project-buttons" style="justify-content: center;">
+            <button type="submit">Send Message</button>
+            <button type="button" id="refine-message-btn" class="btn-custom btn-github">✨ Refine Message</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <!-- End Contact Section -->
+
+  <!-- AI Modal for loading and messages -->
+  <div id="ai-modal" class="ai-modal">
+    <div class="ai-modal-content">
+      <div id="ai-loader" class="loader"></div>
+      <p id="ai-modal-message">Generating...</p>
+      <button id="ai-modal-close" class="btn-custom" style="display: none;">Close</button>
+    </div>
+  </div>
+
+  <ul class="circles">
+    <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+  </ul>
+
+  <!-- Vendor JS Files -->
+  <script src='https://d33wubrfki0l68.cloudfront.net/bundles/99ca30a15e3ea3c291b52005e7a207177acda074.js'></script>
+  <script src='https://d33wubrfki0l68.cloudfront.net/bundles/31e771dfb5ac39ba203d3bdf8a3a67f8763949ba.js'></script>
+
+  <!-- Template Main JS File -->
+  <script src='https://d33wubrfki0l68.cloudfront.net/js/051397989870afdaa9cd4fe4b0ebd5efc3257a9c/assets/js/main.js'></script>
+
+  <!-- Gemini API Integration Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- DOM Elements ---
+        const generateBioBtn = document.getElementById('generate-bio-btn');
+        const refineMessageBtn = document.getElementById('refine-message-btn');
+        const aboutMeTextElement = document.getElementById('about-me-text');
+        const contactMessageElement = document.getElementById('contact-message');
+        
+        const aiModal = document.getElementById('ai-modal');
+        const aiModalMessage = document.getElementById('ai-modal-message');
+        const aiModalCloseBtn = document.getElementById('ai-modal-close');
+        const aiLoader = document.getElementById('ai-loader');
+
+        // Store original texts
+        const originalBio = aboutMeTextElement.innerHTML;
+
+        // --- Modal Functions ---
+        const showModal = (message, showLoader = true, isError = false) => {
+            aiModalMessage.textContent = message;
+            aiLoader.style.display = showLoader ? 'block' : 'none';
+            aiModalCloseBtn.style.display = showLoader ? 'none' : 'inline-block';
+            aiModal.style.display = 'flex';
+            if (isError) {
+                aiModalMessage.style.color = 'red';
+            } else {
+                aiModalMessage.style.color = '#333';
+            }
+        };
+
+        const hideModal = () => {
+            aiModal.style.display = 'none';
+        };
+
+        aiModalCloseBtn.addEventListener('click', hideModal);
+
+        // --- Gemini API Call ---
+        const callGeminiAPI = async (prompt, maxRetries = 3) => {
+            const apiKey = ""; // API key will be injected by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            
+            const payload = {
+                contents: [{ role: "user", parts: [{ text: prompt }] }]
+            };
+
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        return result.candidates[0].content.parts[0].text;
+                    } else {
+                        throw new Error('Invalid response structure from Gemini API.');
+                    }
+                } catch (error) {
+                    console.error(`Attempt ${i + 1} failed:`, error);
+                    if (i === maxRetries - 1) {
+                        throw error; // Rethrow error on last attempt
+                    }
+                    await new Promise(resolve => setTimeout(resolve, 1000 * Math.pow(2, i))); // Exponential backoff
+                }
+            }
+        };
+        
+        // --- Feature: Generate Fun Bio ---
+        generateBioBtn.addEventListener('click', async () => {
+            showModal('Generating a new bio...', true);
+            generateBioBtn.disabled = true;
+            try {
+                const prompt = `Rewrite the following professional bio into a fun, first-person, conversational style. Make it sound like you're talking to a friend. Keep it concise (around 2-3 sentences). Here is the bio:\n\n"${aboutMeTextElement.innerText}"`;
+                const newBio = await callGeminiAPI(prompt);
+                aboutMeTextElement.innerHTML = newBio.replace(/\n/g, '<br>'); // Keep line breaks
+                showModal('Bio updated successfully!', false);
+            } catch (error) {
+                console.error('Error generating bio:', error);
+                showModal('Sorry, something went wrong. Please try again later.', false, true);
+                aboutMeTextElement.innerHTML = originalBio; // Revert on error
+            } finally {
+                generateBioBtn.disabled = false;
+            }
+        });
+        
+        // --- Feature: Refine Contact Message ---
+        refineMessageBtn.addEventListener('click', async () => {
+            const currentMessage = contactMessageElement.value;
+            if (!currentMessage.trim()) {
+                alert('Please write a message first!');
+                return;
+            }
+            
+            showModal('Refining your message...', true);
+            refineMessageBtn.disabled = true;
+            try {
+                const prompt = `Please refine the following message to make it sound more professional, clear, and polite, while keeping the original intent. Here is the message:\n\n"${currentMessage}"`;
+                const refinedMessage = await callGeminiAPI(prompt);
+                contactMessageElement.value = refinedMessage;
+                showModal('Message refined!', false);
+            } catch (error) {
+                console.error('Error refining message:', error);
+                showModal('Sorry, could not refine the message. Please try again.', false, true);
+            } finally {
+                refineMessageBtn.disabled = false;
+            }
+        });
+    });
+  </script>
+
+</body>
+
+</html>
